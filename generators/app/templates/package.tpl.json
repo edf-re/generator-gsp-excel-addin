@@ -1,9 +1,9 @@
 {
-  "name": "office-addin-taskpane",
+  "name": "<%= projectName %>-addin-taskpane",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane.git"
+    "url": "https://github.com/edf-re/<%= projectName %>-addin-taskpane.git"
   },
   "license": "MIT",
   "config": {

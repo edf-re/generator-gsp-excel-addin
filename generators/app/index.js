@@ -1,8 +1,21 @@
 'use strict';
 
+const path = require('path');
+
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
 const yosay = require('yosay');
+const glob = require('glob');
+
+function normalizeTemplatePath(templatePath) {
+  return templatePath.replace(/[/\\]/g, path.sep);
+}
+function getTemplateOutputPath(templatePath, templateReadPath) {
+  return normalizeTemplatePath(templatePath).replace(templateReadPath, '');
+}
+function getTemplateWritePath(templatePath, templateReadPath, destinationPath) {
+  const outputPath = getTemplateOutputPath(templatePath, templateReadPath).replace('.tpl', '');
+  return path.join(destinationPath, outputPath);
+}
 
 module.exports = class extends Generator {
 
@@ -10,7 +23,7 @@ module.exports = class extends Generator {
     // Have Yeoman greet the user.
     this.log(
       yosay(
-        `Welcome to the shining ${chalk.red('generator-gsp-excel-addin')} generator!`
+        `Welcome to the GSP Excel Taskpane Addin Generator!`
       )
     );
 
@@ -26,32 +39,34 @@ module.exports = class extends Generator {
     return this.prompt(prompts)
       .then(props => {
         this.props = props;
-        this.props.projectSlug = props.projectFullName.replace(/\s+/gi, '-').toLowerCase();
-        this.props.projectName = props.projectFullName
-          .trim()
-          .split(/\s+/gi, '-')
-          .map((token, index) => {
-            const firstChar = token[0];
-            return index > 0
-              ? `${firstChar.toUpperCase()}${token.slice(1)}`
-              : token;
-          })
-          .join('');
+        this.props.projectName = props.projectFullName.replace(/\s+/gi, '-').toLowerCase();
 
-        this.env.cwd = `${this.props.projectSlug}-addin`
+        this.env.cwd = `${this.props.projectName}-addin`
       });
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath(),
-      this.destinationPath(),
-      this.props
-    );
+    const separator = path.sep;
+    const filePattern = `${this.templatePath()}${separator}**${separator}!(*.tpl.*)`;
+    const templatePattern = `${this.templatePath()}${separator}**${separator}*.tpl.*`;
+
+    const filePaths = glob.sync(filePattern);
+    const templatePaths = glob.sync(templatePattern);
+
+    this.fs.copy(filePaths, this.destinationPath());
+
+    templatePaths.forEach((templatePath) => {
+      const templateWritePath = getTemplateWritePath(
+        templatePath,
+        this.templatePath(),
+        this.destinationPath());
+
+      this.fs.copyTpl(templatePath, templateWritePath, this.props);
+    });
   }
 
   install() {
     process.chdir(this.env.cwd);
-    this.spawnCommand('npm', ['install']);
+    // this.spawnCommand('npm', ['install']);
   }
 };

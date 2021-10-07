@@ -72,9 +72,9 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="<%= projectNameTitleCase %> addin initialized!"/>
+        <bt:String id="GetStarted.Title" DefaultValue="<%= projectFullName %> addin initialized!"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Export <%= projectNameTitleCase %>"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Export <%= projectFullName %>"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Click here to explore."/>
