@@ -1,0 +1,41 @@
+{
+	"Describe Test Suite": {
+		"prefix": "describe-test-suite",
+		"body": [
+			"describe('${1:Suite description}', () => {",
+			"\t$0",
+			"});"
+		],
+		"description": "Test suite, describe"
+	},
+	"Before Each Block": {
+		"prefix": "before-each-setup-block",
+		"body": [
+			"beforeEach(() => ${1:{ ${2:// test setup} \\}});"
+		],
+		"description": "Angular Test, beforeEach"
+	},
+	"Test Block": {
+		"prefix": "test-test-block-jest",
+		"body": [
+			"test(`${1:test description}`, ${2:async }() => {",
+			"\t$0",
+			"});"
+		],
+		"description": "Create a new jest test"
+	},
+	"Expect": {
+		"prefix": "expect-jest",
+		"body": [
+			"expect(${1:actualResult}).${2:not.}${3|toEqual,toBe|}(${4:expectedResult});"
+		],
+		"description": "New Jest expectatation"
+	},
+	"Command Button": {
+		"prefix": "command-button",
+		"body": [
+			"<button id=\"${1:commandButtonId}\" data-command=\"${2:commandName}\" data-btndisable=\"true\" class=\"btn\">${3:Command Button Text}</button>"
+		],
+		"description": "New command button"
+	},
+}

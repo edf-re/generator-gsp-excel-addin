@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EDF Task Pane Add-in</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/fabric. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+
+    <header class="header">
+        <img width="90" height="90" src="https://services.dev.edf-re.com/asset/images/edfr-swish.png" alt="EDF" title="EDF" />
+        <h1 class="ms-font-su welcome">Import External Data</h1>
+    </header>
+
+    <section id="sideload-msg" class="main">
+        <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
+    </section>
+
+    <main id="app-body" class="main" >
+
+        <br/>
+        <br/>
+        <div id="isSSOLoading" style="display: none;" class='loader'>
+        </div>
+
+        <div id="repeaterList">
+            <ul id="dynamic-list" style="color:red;">
+            </ul>
+        </div>
+
+        <div id="loginPanel" style="display: none;">
+            <h3> Login </h3>
+            <form id="loginForm" class="our-action-buttons">
+                <input id="username" name="username" value="" type="text" />
+
+                <input id="password" name="password" value="" type="password" />
+
+                <input class="btn" type="submit" value="submit" />
+            </form>
+        </div>
+
+
+        <div id="ButtonPanel"  class="our-action-buttons">
+            <!-- place your command buttons here. If you are using VS Code, you can type "button" and get a snippet! -->
+        </div>
+
+        <br />
+
+
+    </main>
+
+    <section id="error-msg-section" class="hidden">
+        <p id="error-msg" class="errorInfo"></p>
+    </section>
+</body>
+
+</html>

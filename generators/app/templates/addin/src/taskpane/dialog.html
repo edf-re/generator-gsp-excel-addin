@@ -1,0 +1,42 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license in root of repo. -->
+<!-- This file shows how to create an empty HTML file to load an AAD login script. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/4.0/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="https://alcdn.msauth.net/lib/1.1.3/js/msal.min.js"></script>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <link rel="stylesheet"
+        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css" />
+
+    <style>
+        .container {
+            padding: 20px;
+            padding-bottom: 30px;
+            padding-top: 100px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container ms-font-m ms-welcome ms-Fabric">
+        <img width="90" height="90" src="https://services.dev.edf-re.com/asset/images/edfr-swish.png" alt="EDF"
+        title="EDF" />
+        <h1>Signing in...</h1>
+    </div>
+
+</body>
+
+</html>

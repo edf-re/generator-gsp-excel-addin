@@ -1,0 +1,98 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+- features/*
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Npm@1
+  inputs:
+   command: install
+  displayName: 'NPM Install'
+
+- task: Npm@1
+  inputs:
+   command: custom
+   customCommand: 'run test'
+  displayName: 'NPM Test'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/coverage/'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(build.artifactStagingDirectory)/coverage/$(Build.BuildId)_coverage.zip'
+    replaceExistingArchive: true
+  displayName: 'Compress Coverage Artifacts'
+
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Coverage Artifacts'
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)/coverage/$(Build.BuildId)_coverage.zip'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'run build:prod'
+  displayName: 'NPM Build Production'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/dist'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_prod.zip'
+    replaceExistingArchive: true
+  displayName: 'Compress Production Release Artifacts'
+
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Production Artifacts'
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_prod.zip'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'run build:stage'
+  displayName: 'NPM Build Staging'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/dist'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_stage.zip'
+    replaceExistingArchive: true
+  displayName: 'Compress Staging Release Artifacts'
+
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Staginging Artifacts'
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_stage.zip'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'run build:dev'
+  displayName: 'NPM Build Development'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/dist'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_dev.zip'
+    replaceExistingArchive: true
+  displayName: 'Compress Development Release Artifacts'
+
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Development Artifacts'
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)/dist/$(Build.BuildId)_dev.zip'
+

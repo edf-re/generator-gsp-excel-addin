@@ -1,0 +1,113 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+   padding: 20px;
+   padding-bottom: 30px;
+   padding-top: 100px;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+}
+
+.main {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-flex-wrap: nowrap;
+   flex-wrap: nowrap;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-flex: 1 0 0;
+   flex: 1 0 0;
+   padding: 10px 20px;
+}
+
+._main > h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.btn {
+   margin: 5px 0 10px 0;
+   padding: 10px;
+   text-transform: uppercase;
+   background-color: #0078d7; 
+   color:#fff;
+   border:none; 
+   border-radius: 5px;
+}
+
+.btn:hover {
+   cursor: pointer;
+}
+
+.named-range-input {
+   padding: 10px 10px 0 10px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.input-box {
+   margin: 5px;
+   padding-left: 2px;
+}
+
+.hidden {
+   display: none;
+}
+
+.errorInfo {
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   color: red;
+}
+
+.disabled {
+   pointer-events: none;
+   border: 1px solid #999999;
+   background-color: #cccccc;
+   color: #666666;
+}
+
+.our-action-buttons {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+#loginForm > input{
+   margin: 6px;
+   padding: .5rem;
+}
+
+.loader {
+   border: 16px solid #f3f3f3; /* Light grey */
+   border-top: 16px solid #0078d7; /* Blue */
+   border-radius: 50%;
+   width: 120px;
+   height: 120px;
+   animation: spin 2s linear infinite;
+ }
+
+ @keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
