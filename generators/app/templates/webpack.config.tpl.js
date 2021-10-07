@@ -54,7 +54,7 @@ module.exports = async (env, options) => {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: "./src/taskpane/taskpane.ts",
       commands: "./src/commands/commands.ts",
-      //dialog: "./src/taskpane/fallbackAuthDialog.ts",
+      dialog: "./src/taskpane/fallbackAuthDialog.ts"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"],
