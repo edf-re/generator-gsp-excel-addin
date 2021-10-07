@@ -67,6 +67,6 @@ module.exports = class extends Generator {
 
   install() {
     process.chdir(this.env.cwd);
-    // this.spawnCommand('npm', ['install']);
+    this.spawnCommand('npm', ['install']);
   }
 };
